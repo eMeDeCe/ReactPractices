@@ -55,7 +55,7 @@ export const ListPage: React.FC = () => {
             <input value={filter} onChange={(e) => setFilter(e.target.value)} />
           </div>
       </form>
-      <h2>Aquí según el filtro organizacion</h2>
+      <h2>Los miembros de la organización {filter} el github</h2>
       <table className="table">
         <thead>
           <tr>
