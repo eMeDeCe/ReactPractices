@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, generatePath } from "react-router-dom";
+import Pagination from '@material-ui/lab/Pagination';
+
 
 interface MemberEntity {
   id: string;
@@ -10,29 +12,7 @@ interface MemberEntity {
 export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [filter, setFilter] = React.useState("Lemoncode");
- /* React.useEffect(() => {
-    const ok = fetch(`https://api.github.com/orgs/${filter}/members`)
-      .then((response) => response.json())
-      .then((json) => setMembers(json));
-  }, [filter]);*/
-
-  /*React.useEffect(() => {
-    try {
-       fetch(`https://api.github.com/orgs/${filter}/members`)
-      .then(function(response) {
-        if (response.ok) {
-          response.json().then((json) => setMembers(json));
-        } else {
-          console.log("error");
-        }
-
-      });
-    } catch (error) {
-      console.log("continua");
-    }
-   
-      //.then((json) => setMembers(json));
-  }, [filter]);*/
+ 
   fetch(`https://api.github.com/orgs/${filter}/members`).then((response) => {
     if (response.ok) {
       return response.json();
@@ -46,6 +26,20 @@ export const ListPage: React.FC = () => {
   .catch((error) => {
     console.log(error)
   });
+
+  const [page, setPage] = React.useState(1);
+  const rows_per_page = 5;
+  const handleChange = (event: React.ChangeEvent<{ value: string }>, value: number) => {
+    setPage(value);
+    showList();
+  };
+
+  function showList () {
+    let start = rows_per_page * (page-1);
+    let end = rows_per_page * page;
+    let memberPerPage = members.slice(start, end);
+    return memberPerPage;
+  }
   
   return (
     <>
@@ -55,7 +49,7 @@ export const ListPage: React.FC = () => {
             <input value={filter} onChange={(e) => setFilter(e.target.value)} />
           </div>
       </form>
-      <h2>Los miembros de la organización {filter} el github</h2>
+      <h2>Los miembros de la organización {filter} en github</h2>
       <table className="table">
         <thead>
           <tr>
@@ -65,7 +59,7 @@ export const ListPage: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {members.map((member, i) => (
+          {showList().map((member, i) => (
             <tr key={i}>
               <td>
                 <img src={member.avatar_url} style={{ width: "5rem" }} />
@@ -74,7 +68,7 @@ export const ListPage: React.FC = () => {
                 <span>{member.id}</span>
               </td>
               <td>
-                <Link to={generatePath("/detail/:id", { id: member.login })}>
+                <Link to={generatePath("/detail/:id", { id: member.login }) } >
                   {member.login}
                 </Link>{" "}
               </td>
@@ -82,6 +76,8 @@ export const ListPage: React.FC = () => {
           ))}
         </tbody>
       </table>
+      <Pagination count={Math.ceil(members.length/rows_per_page)} onChange={handleChange} />
     </>
   );
 };
+
