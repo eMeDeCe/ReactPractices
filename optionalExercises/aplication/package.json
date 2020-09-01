@@ -33,6 +33,8 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@types/react-router": "^5.1.8",
     "emotion": "^10.0.23",
     "react": "^16.12.0",

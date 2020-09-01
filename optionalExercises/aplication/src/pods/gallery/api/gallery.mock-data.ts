@@ -1,34 +1,29 @@
 import { PictureInfo } from './gallery.api-model';
 
-export const mockEmployeeList: PictureInfo[] = [
+export const mockPictureInfo: PictureInfo[] = [
   {
     id: 'alhambra',
-    picUrl: 'pictures/alhambra.jpg',
+    picUrl: 'images/alhambra.jpg',
     title: 'Granada',
   },
   {
     id: 'alcazar',
-    picUrl: 'pictures/sevilla.jpg',
+    picUrl: 'images/sevilla.jpg',
     title: 'Sevilla',
   },
   {
     id: 'mezquita',
-    picUrl: 'pictures/cordoba.jpg',
+    picUrl: 'images/cordoba.jpg',
     title: 'Córdoba',
   },
   {
-    id: 'alhambra',
-    picUrl: 'pictures/alhambra.jpg',
-    title: 'Granada',
-  },
-  {
     id: 'castillo',
-    picUrl: 'pictures/lisboa.jpg',
+    picUrl: 'images/lisboa.jpg',
     title: 'lisboa',
   },
   {
     id: 'casa',
-    picUrl: 'pictures/oporto.jpg',
+    picUrl: 'images/oporto.jpg',
     title: 'oporto',
   },
 ];

@@ -19,7 +19,7 @@ export const GalleryContainer: React.FunctionComponent = () => {
 
   return (
     <>
-      <h1>Hello from Employee list POD Container</h1>
+      <h1>Hello from gallery list POD Container</h1>
       <GalleryComponent pictures={pictures} />
     </>
   );
