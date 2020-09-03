@@ -2,28 +2,43 @@ import { PictureInfo } from './gallery.api-model';
 
 export const mockPictureInfo: PictureInfo[] = [
   {
-    id: 'alhambra',
+    id: 'granada',
     picUrl: 'images/alhambra.jpg',
-    title: 'Granada',
+    title: 'Alhambra',
   },
   {
-    id: 'alcazar',
+    id: 'sevilla',
     picUrl: 'images/sevilla.jpg',
-    title: 'Sevilla',
+    title: 'Real Alcázar',
   },
   {
-    id: 'mezquita',
+    id: 'cordoba',
     picUrl: 'images/cordoba.jpg',
-    title: 'Córdoba',
+    title: 'Mezquita',
   },
   {
-    id: 'castillo',
+    id: 'Malaga',
+    picUrl: 'images/malaga.jpg',
+    title: 'Castillo Gibralfaro',
+  },
+  {
+    id: 'cadiz',
     picUrl: 'images/lisboa.jpg',
-    title: 'lisboa',
+    title: 'Medina Sidonia',
   },
   {
-    id: 'casa',
+    id: 'huelva',
     picUrl: 'images/oporto.jpg',
-    title: 'oporto',
+    title: 'Almonaster la Real',
+  },
+  {
+    id: 'almeria',
+    picUrl: 'images/oporto.jpg',
+    title: 'Castillo de Abderramán III',
+  },
+  {
+    id: 'jaen',
+    picUrl: 'images/jaen.jpg',
+    title: 'Baños Árabes Palacio de Torres',
   },
 ];
