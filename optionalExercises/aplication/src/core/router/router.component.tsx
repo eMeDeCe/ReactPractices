@@ -1,13 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { switchRoutes } from './routes';
-import {
-  LoginScene,
-  SubmoduleListScene,
-  EmployeeListScene,
-  EmployeeScene,
-  GalleryScene,
-} from 'scenes';
+import { LoginScene, GalleryScene } from 'scenes';
 
 export const RouterComponent: React.FunctionComponent = () => {
   return (
@@ -15,27 +9,12 @@ export const RouterComponent: React.FunctionComponent = () => {
       <Switch>
         <Route
           exact={true}
-          path={[switchRoutes.root, switchRoutes.login]}
+          path={[switchRoutes.login]}
           component={LoginScene}
         />
         <Route
           exact={true}
-          path={switchRoutes.submoduleList}
-          component={SubmoduleListScene}
-        />
-        <Route
-          exact={true}
-          path={switchRoutes.employees}
-          component={EmployeeListScene}
-        />
-        <Route
-          exact={true}
-          path={switchRoutes.editEmployee}
-          component={EmployeeScene}
-        />
-        <Route
-          exact={true}
-          path={switchRoutes.gallery}
+          path={[switchRoutes.root, switchRoutes.gallery]}
           component={GalleryScene}
         />
       </Switch>

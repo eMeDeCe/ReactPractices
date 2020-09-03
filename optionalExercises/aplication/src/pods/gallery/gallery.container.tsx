@@ -19,7 +19,7 @@ export const GalleryContainer: React.FunctionComponent = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center' }}>Compra la Historia del Azulejo </h1>
+      <h1 style={{ textAlign: 'center' }}>Azulejos </h1>
       <GalleryComponent pictures={pictures} />
     </>
   );

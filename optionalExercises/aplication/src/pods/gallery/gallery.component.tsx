@@ -39,7 +39,7 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
       <div className={classes.root}>
         <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader component="div">Andalucía</ListSubheader>
+            <ListSubheader component="div">Azulejos en Andalucía</ListSubheader>
           </GridListTile>
           {pictures.map(e => (
             <GridListTile key={e.id}>

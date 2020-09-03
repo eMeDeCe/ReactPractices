@@ -33,7 +33,7 @@ export const mockPictureInfo: PictureInfo[] = [
   },
   {
     id: 'almeria',
-    picUrl: 'images/oporto.jpg',
+    picUrl: 'images/almeria.jpg',
     title: 'Castillo de Abderramán III',
   },
   {
