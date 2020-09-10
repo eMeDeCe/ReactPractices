@@ -17,7 +17,7 @@ export const mockPictureInfo: PictureInfo[] = [
     title: 'Mezquita',
   },
   {
-    id: 'Malaga',
+    id: 'malaga',
     picUrl: 'images/malaga.jpg',
     title: 'Castillo Gibralfaro',
   },

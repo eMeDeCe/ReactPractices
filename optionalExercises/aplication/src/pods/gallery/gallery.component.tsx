@@ -10,6 +10,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 interface Props {
   pictures: PictureInfo[];
+  onAdd: (picture: PictureInfo) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,9 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
+export const GalleryComponent: React.FC<Props> = ({ pictures, onAdd }) => {
   const classes = useStyles();
-
+  const test = () => {
+    console.log('pulsado en una imagen');
+  };
   return (
     <>
       <div className={classes.root}>
@@ -50,6 +53,7 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
                   <IconButton
                     aria-label={`info about ${e.title}`}
                     className={classes.icon}
+                    onClick={test}
                   >
                     <AddShoppingCartIcon />
                   </IconButton>

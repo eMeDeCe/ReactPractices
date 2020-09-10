@@ -4,7 +4,7 @@ import { PictureInfo } from './gallery.vm';
 import { mapPictureInfoListFromApiToVm } from './gallery.mapper';
 import { getGallery } from './api';
 
-export const GalleryContainer: React.FunctionComponent = () => {
+export const GalleryContainer: React.FC = () => {
   const [pictures, setPictures] = React.useState<PictureInfo[]>([]);
 
   const onLoadGallery = async () => {
