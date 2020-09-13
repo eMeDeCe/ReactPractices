@@ -7,10 +7,10 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import { PicturesContext, PicturesProvider } from 'common-app/pictures';
 
 interface Props {
   pictures: PictureInfo[];
-  onAdd: (picture: PictureInfo) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,11 +32,18 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const GalleryComponent: React.FC<Props> = ({ pictures, onAdd }) => {
+export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
   const classes = useStyles();
-  const test = () => {
-    console.log('pulsado en una imagen');
+  const { idsSelected, setPicturesSelected } = React.useContext(
+    PicturesContext
+  );
+
+  const handleAdd = element => {
+    const newTodos = [...idsSelected];
+    newTodos.push(element);
+    setPicturesSelected(newTodos);
   };
+
   return (
     <>
       <div className={classes.root}>
@@ -53,7 +60,7 @@ export const GalleryComponent: React.FC<Props> = ({ pictures, onAdd }) => {
                   <IconButton
                     aria-label={`info about ${e.title}`}
                     className={classes.icon}
-                    onClick={test}
+                    onClick={event => handleAdd(e.id)}
                   >
                     <AddShoppingCartIcon />
                   </IconButton>
