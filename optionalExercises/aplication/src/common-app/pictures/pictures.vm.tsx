@@ -1,7 +1,9 @@
 export interface PicturesSelected {
-  idsSelected: string[];
+  idsSelected: string;
+  totalSelected: number;
 }
 
 export const createEmptyPicturesSelected = (): PicturesSelected => ({
-  idsSelected: [],
+  idsSelected: '',
+  totalSelected: 0,
 });

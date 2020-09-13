@@ -3,7 +3,11 @@ import { CartComponent } from './cart.component';
 import { PicturesContext } from 'common-app/pictures';
 
 export const CartContainer: React.FC = () => {
-  const { setPicturesSelected } = React.useContext(PicturesContext);
+  const {
+    idsSelected,
+    ToggleSelectedPicture,
+    totalSelected,
+  } = React.useContext(PicturesContext);
   return (
     <>
       <CartComponent />

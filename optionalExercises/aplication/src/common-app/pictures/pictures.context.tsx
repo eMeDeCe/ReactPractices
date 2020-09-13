@@ -1,30 +1,34 @@
 import React from 'react';
-import { PicturesSelected, createEmptyPicturesSelected } from '././pictures.vm';
+import { PicturesSelected } from '././pictures.vm';
 
 interface Context extends PicturesSelected {
-  setPicturesSelected: (PicturesSelected: PicturesSelected) => void;
+  ToggleSelectedPicture(picture: string);
 }
 
-const zeroPictures = [];
+let countPictures = 0;
 
 export const PicturesContext = React.createContext<Context>({
-  idsSelected: zeroPictures,
-  setPicturesSelected: () =>
-    console.warn(
-      'If you area reading this, likely you forgot to add the provider on top of your app'
-    ),
+  idsSelected: '',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ToggleSelectedPicture: () => {},
+  totalSelected: 0,
 });
 
 export const PicturesProvider: React.FC = ({ children }) => {
-  const [PicturesSelected, setPicturesSelected] = React.useState<
-    PicturesSelected
-  >(createEmptyPicturesSelected());
+  const [idsSelected, setIdsSelected] = React.useState('');
+  const [totalSelected, setTotalSelected] = React.useState(0);
+
+  const ToggleSelectedPicture = element => {
+    countPictures++;
+    setTotalSelected(countPictures);
+  };
 
   return (
     <PicturesContext.Provider
       value={{
-        idsSelected: PicturesSelected.idsSelected,
-        setPicturesSelected,
+        idsSelected,
+        ToggleSelectedPicture,
+        totalSelected,
       }}
     >
       {children}
