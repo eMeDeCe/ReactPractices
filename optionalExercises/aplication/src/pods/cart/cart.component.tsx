@@ -41,7 +41,6 @@ export const CartComponent: React.FC = () => {
         <Typography variant="h5" component="h2">
           Imágenes añadidas: {totalSelected}
         </Typography>
-
         <Typography variant="body2" component="p">
           Tramitar pedido
         </Typography>

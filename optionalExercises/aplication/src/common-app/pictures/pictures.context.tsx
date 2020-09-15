@@ -1,5 +1,5 @@
 import React from 'react';
-import { PicturesSelected } from '././pictures.vm';
+import { PicturesSelected } from './pictures.vm';
 
 interface Context extends PicturesSelected {
   ToggleSelectedPicture(picture: string);
@@ -15,6 +15,10 @@ export const PicturesContext = React.createContext<Context>({
   totalSelected: 0,
 });
 
+function sendInfo(element) {
+  console.log('esepera');
+}
+
 export const PicturesProvider: React.FC = ({ children }) => {
   const [idsSelected, setIdsSelected] = React.useState('');
   const [totalSelected, setTotalSelected] = React.useState(0);
@@ -24,6 +28,7 @@ export const PicturesProvider: React.FC = ({ children }) => {
     setTotalSelected(countPictures);
     listSelected.push(element);
     console.log(listSelected);
+    sendInfo(element);
   };
 
   return (

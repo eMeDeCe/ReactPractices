@@ -1,5 +1,7 @@
 import React from 'react';
 import { PictureInfo } from './gallery.vm';
+import { PicturesContext, PicturesProvider } from 'common-app/pictures';
+
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -7,7 +9,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { PicturesContext, PicturesProvider } from 'common-app/pictures';
 
 interface Props {
   pictures: PictureInfo[];
@@ -38,8 +39,9 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
     PicturesContext
   );
 
-  const handleAdd = element => {
+  const handleAdd = (element, isSelected) => {
     ToggleSelectedPicture(element);
+    isSelected = true;
   };
 
   return (
@@ -58,7 +60,7 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
                   <IconButton
                     aria-label={`info about ${e.title}`}
                     className={classes.icon}
-                    onClick={event => handleAdd(e.id)}
+                    onClick={event => handleAdd(e.id, e.isSelected)}
                   >
                     <AddShoppingCartIcon />
                   </IconButton>
