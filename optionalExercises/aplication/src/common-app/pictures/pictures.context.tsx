@@ -6,6 +6,7 @@ interface Context extends PicturesSelected {
 }
 
 let countPictures = 0;
+const listSelected = [];
 
 export const PicturesContext = React.createContext<Context>({
   idsSelected: '',
@@ -21,6 +22,8 @@ export const PicturesProvider: React.FC = ({ children }) => {
   const ToggleSelectedPicture = element => {
     countPictures++;
     setTotalSelected(countPictures);
+    listSelected.push(element);
+    console.log(listSelected);
   };
 
   return (
