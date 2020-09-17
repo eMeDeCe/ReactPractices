@@ -16,7 +16,7 @@ export const PicturesContext = React.createContext<Context>({
 });
 
 function sendInfo(element) {
-  console.log('esepera');
+  console.log('esperando a enterarme');
 }
 
 export const PicturesProvider: React.FC = ({ children }) => {
