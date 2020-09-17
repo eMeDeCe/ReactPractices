@@ -6,30 +6,28 @@ interface Context extends PicturesSelected {
 }
 
 let countPictures = 0;
-const listSelected = [];
 
 export const PicturesContext = React.createContext<Context>({
   idsSelected: '',
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ToggleSelectedPicture: () => {},
   totalSelected: 0,
+  selectedItems: [],
 });
-
-function sendInfo(element) {
-  console.log('esperando a enterarme');
-}
 
 export const PicturesProvider: React.FC = ({ children }) => {
   const [idsSelected, setIdsSelected] = React.useState('');
   const [totalSelected, setTotalSelected] = React.useState(0);
+  //const [selectedItems, setSelectedItems] = React.useState();
+  const [selectedItems, setSelectedItems] = React.useState([]);
 
   const ToggleSelectedPicture = element => {
     countPictures++;
     setTotalSelected(countPictures);
-    listSelected.push(element);
-    console.log(listSelected);
-    sendInfo(element);
+    setSelectedItems(searches => [...searches, element]);
   };
+
+  //console.log(selectedItems);
 
   return (
     <PicturesContext.Provider
@@ -37,6 +35,7 @@ export const PicturesProvider: React.FC = ({ children }) => {
         idsSelected,
         ToggleSelectedPicture,
         totalSelected,
+        selectedItems,
       }}
     >
       {children}
