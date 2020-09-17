@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PictureInfo } from './gallery.vm';
 import { PicturesContext, PicturesProvider } from 'common-app/pictures';
@@ -40,8 +39,8 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
     PicturesContext
   );
 
-  const handleAdd = (element, isSelected) => {
-    ToggleSelectedPicture(element);
+  const handleAdd = (element, isSelected, url, title) => {
+    ToggleSelectedPicture(element, url, title);
     isSelected = true;
   };
 
@@ -61,7 +60,9 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
                   <IconButton
                     aria-label={`info about ${e.title}`}
                     className={classes.icon}
-                    onClick={event => handleAdd(e.id, e.isSelected)}
+                    onClick={event =>
+                      handleAdd(e.id, e.isSelected, e.picUrl, e.title)
+                    }
                   >
                     <AddShoppingCartIcon />
                   </IconButton>

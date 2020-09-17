@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { PicturesContext } from 'common-app/pictures';
 
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -22,11 +24,17 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  img: {
+    height: '8em',
+    marginLeft: '1em',
+  },
 });
 
 export const CartComponent: React.FC = () => {
   const classes = useStyles();
-  const { totalSelected } = React.useContext(PicturesContext);
+  const { totalSelected, infoSelectedItems } = React.useContext(
+    PicturesContext
+  );
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -41,6 +49,14 @@ export const CartComponent: React.FC = () => {
         <Typography variant="h5" component="h2">
           Imágenes añadidas: {totalSelected}
         </Typography>
+        {infoSelectedItems.map(e => (
+          <img
+            className={classes.img}
+            key={e.id}
+            src={`src/assets/${e.url}`}
+            alt={e.title}
+          />
+        ))}
         <Typography variant="body2" component="p">
           Tramitar pedido
         </Typography>
@@ -51,3 +67,4 @@ export const CartComponent: React.FC = () => {
     </Card>
   );
 };
+// <RemoveShoppingCartIcon />
