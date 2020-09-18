@@ -41,9 +41,11 @@ const useStyles = makeStyles({
 
 export const CartComponent: React.FC = () => {
   const classes = useStyles();
-  const { totalSelected, infoSelectedItems } = React.useContext(
-    PicturesContext
-  );
+  const {
+    totalSelected,
+    infoSelectedItems,
+    removeSelectedPicture,
+  } = React.useContext(PicturesContext);
   function showCart() {
     return infoSelectedItems.map(e => (
       <div key={e.id} className={classes.contentImg}>
@@ -53,7 +55,7 @@ export const CartComponent: React.FC = () => {
           alt={e.title}
         />
         <div>
-          <IconButton onClick={event => console.log('hola')}>
+          <IconButton onClick={event => removeSelectedPicture(e.id)}>
             <RemoveShoppingCartIcon className={classes.remove} />
           </IconButton>
         </div>

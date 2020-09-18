@@ -35,12 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
   const classes = useStyles();
-  const { idsSelected, ToggleSelectedPicture } = React.useContext(
-    PicturesContext
-  );
+  const { idsSelected, addSelectedPicture } = React.useContext(PicturesContext);
 
   const handleAdd = (element, isSelected, url, title) => {
-    ToggleSelectedPicture(element, url, title);
+    addSelectedPicture(element, url, title);
     isSelected = true;
   };
 
