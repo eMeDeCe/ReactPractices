@@ -20,7 +20,7 @@ export const PicturesContext = React.createContext<Context>({
 });
 
 export const PicturesProvider: React.FC = ({ children }) => {
-  const [idsSelected, setIdsSelected] = React.useState('');
+  const [idsSelected] = React.useState('');
   const [totalSelected, setTotalSelected] = React.useState(0);
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [infoSelectedItems, setInfoSelectedItems] = React.useState([]);

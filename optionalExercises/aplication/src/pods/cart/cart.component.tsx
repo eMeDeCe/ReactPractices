@@ -47,8 +47,8 @@ export const CartComponent: React.FC = () => {
     removeSelectedPicture,
   } = React.useContext(PicturesContext);
   function showCart() {
-    return infoSelectedItems.map(e => (
-      <div key={e.id} className={classes.contentImg}>
+    return infoSelectedItems.map((e, index) => (
+      <div key={index} className={classes.contentImg}>
         <img
           className={classes.img}
           src={`src/assets/${e.url}`}

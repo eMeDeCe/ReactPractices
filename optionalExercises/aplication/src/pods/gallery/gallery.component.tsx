@@ -1,6 +1,6 @@
 import React from 'react';
 import { PictureInfo } from './gallery.vm';
-import { PicturesContext, PicturesProvider } from 'common-app/pictures';
+import { PicturesContext } from 'common-app/pictures';
 
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
   const classes = useStyles();
-  const { idsSelected, addSelectedPicture } = React.useContext(PicturesContext);
+  const { addSelectedPicture } = React.useContext(PicturesContext);
 
   const handleAdd = (element, isSelected, url, title) => {
     addSelectedPicture(element, url, title);
