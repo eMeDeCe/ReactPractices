@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { PicturesContext } from 'common-app/pictures';
-
+import IconButton from '@material-ui/core/IconButton';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 
 const useStyles = makeStyles({
@@ -28,6 +28,15 @@ const useStyles = makeStyles({
     height: '8em',
     marginLeft: '1em',
   },
+  contentImg: {
+    display: 'inline-block',
+  },
+  remove: {
+    marginLeft: '1em',
+  },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
 });
 
 export const CartComponent: React.FC = () => {
@@ -35,6 +44,22 @@ export const CartComponent: React.FC = () => {
   const { totalSelected, infoSelectedItems } = React.useContext(
     PicturesContext
   );
+  function showCart() {
+    return infoSelectedItems.map(e => (
+      <div key={e.id} className={classes.contentImg}>
+        <img
+          className={classes.img}
+          src={`src/assets/${e.url}`}
+          alt={e.title}
+        />
+        <div>
+          <IconButton onClick={event => console.log('hola')}>
+            <RemoveShoppingCartIcon className={classes.remove} />
+          </IconButton>
+        </div>
+      </div>
+    ));
+  }
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -49,14 +74,7 @@ export const CartComponent: React.FC = () => {
         <Typography variant="h5" component="h2">
           Imágenes añadidas: {totalSelected}
         </Typography>
-        {infoSelectedItems.map(e => (
-          <img
-            className={classes.img}
-            key={e.id}
-            src={`src/assets/${e.url}`}
-            alt={e.title}
-          />
-        ))}
+        {showCart()}
         <Typography variant="body2" component="p">
           Tramitar pedido
         </Typography>
@@ -67,4 +85,3 @@ export const CartComponent: React.FC = () => {
     </Card>
   );
 };
-// <RemoveShoppingCartIcon />
