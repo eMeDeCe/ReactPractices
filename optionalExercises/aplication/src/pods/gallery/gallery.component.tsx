@@ -49,8 +49,8 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
             <ListSubheader component="div">Azulejos en Andalucía</ListSubheader>
           </GridListTile>
-          {pictures.map(e => (
-            <GridListTile key={e.id}>
+          {pictures.map((e, index) => (
+            <GridListTile key={index}>
               <img src={`src/assets/${e.picUrl}`} alt={e.title} />
               <GridListTileBar
                 title={e.title}
