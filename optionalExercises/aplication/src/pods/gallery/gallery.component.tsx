@@ -10,6 +10,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
+import { LocationContext } from 'common-app/location';
 
 interface Props {
   pictures: PictureInfo[];
@@ -51,6 +52,8 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
     isSelected = true;
   };
 
+  const { location, updatingLocation } = React.useContext(LocationContext);
+
   return (
     <>
       <div className={classes.root}>
@@ -59,14 +62,16 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
             <Button
               className={classes.myButton}
               variant="outlined"
-              onClick={event => console.log('Andalucía')}
+              onClick={event => {
+                updatingLocation('and');
+              }}
             >
               Andalucia
             </Button>
             <Button
               className={classes.myButton}
               variant="outlined"
-              onClick={event => console.log('Portugal')}
+              onClick={event => updatingLocation('port')}
             >
               Portugal
             </Button>

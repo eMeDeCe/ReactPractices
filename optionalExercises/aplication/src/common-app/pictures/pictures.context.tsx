@@ -34,7 +34,6 @@ export const PicturesProvider: React.FC = ({ children }) => {
       { id: element, title: title, url: url },
     ]);
   };
-
   const removeSelectedPicture = element => {
     countPictures--;
     setTotalSelected(countPictures);
@@ -42,8 +41,6 @@ export const PicturesProvider: React.FC = ({ children }) => {
       infoSelectedItems.filter(searches => searches.id !== element)
     );
   };
-
-  console.log(infoSelectedItems);
 
   return (
     <PicturesContext.Provider

@@ -1,2 +1,2 @@
 export * from './login.scene';
-export * from './galleryAnd.scene';
+export * from './gallery.scene';

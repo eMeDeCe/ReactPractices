@@ -3,21 +3,24 @@ import { GalleryComponent } from './gallery.component';
 import { PictureInfo } from './gallery.vm';
 import { mapPictureInfoListFromApiToVm } from './gallery.mapper';
 import { getGallery } from './api';
+import { LocationContext } from 'common-app/location';
 
 export const GalleryContainer: React.FC = () => {
   const [pictures, setPictures] = React.useState<PictureInfo[]>([]);
-  const [filter, setFilter] = React.useState('and');
+  //const [filter, setFilter] = React.useState('and');
+
+  const { location } = React.useContext(LocationContext);
 
   const onLoadGallery = async () => {
     const apiGallery = await getGallery();
     const viewModelGallery = mapPictureInfoListFromApiToVm(apiGallery);
-    const galleryDisplayed = viewModelGallery.filter(e => e.local === filter);
+    const galleryDisplayed = viewModelGallery.filter(e => e.local === location);
     setPictures(galleryDisplayed);
   };
 
   React.useEffect(() => {
     onLoadGallery();
-  }, []);
+  }, [location]);
 
   return (
     <>
