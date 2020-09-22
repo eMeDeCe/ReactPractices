@@ -6,11 +6,13 @@ import { getGallery } from './api';
 
 export const GalleryContainer: React.FC = () => {
   const [pictures, setPictures] = React.useState<PictureInfo[]>([]);
+  const [filter, setFilter] = React.useState('and');
 
   const onLoadGallery = async () => {
     const apiGallery = await getGallery();
     const viewModelGallery = mapPictureInfoListFromApiToVm(apiGallery);
-    setPictures(viewModelGallery);
+    const galleryDisplayed = viewModelGallery.filter(e => e.local === filter);
+    setPictures(galleryDisplayed);
   };
 
   React.useEffect(() => {

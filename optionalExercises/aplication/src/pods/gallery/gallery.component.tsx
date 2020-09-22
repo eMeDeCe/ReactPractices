@@ -9,6 +9,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Button from '@material-ui/core/Button';
 
 interface Props {
   pictures: PictureInfo[];
@@ -22,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'space-around',
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
+      '& > *': {
+        margin: theme.spacing(2),
+        border: 0,
+      },
     },
     gridList: {
       width: 500,
@@ -29,6 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     icon: {
       color: 'rgba(255, 255, 255, 0.54)',
+    },
+    myButton: {
+      border: '0',
+      marginRight: '3px',
     },
   })
 );
@@ -47,7 +56,20 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
       <div className={classes.root}>
         <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader component="div">Azulejos en Andalucía</ListSubheader>
+            <Button
+              className={classes.myButton}
+              variant="outlined"
+              onClick={event => console.log('Andalucía')}
+            >
+              Andalucia
+            </Button>
+            <Button
+              className={classes.myButton}
+              variant="outlined"
+              onClick={event => console.log('Portugal')}
+            >
+              Portugal
+            </Button>
           </GridListTile>
           {pictures.map((e, index) => (
             <GridListTile key={index}>
