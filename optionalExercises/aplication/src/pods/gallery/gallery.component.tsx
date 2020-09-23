@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme: Theme) =>
       border: '0',
       marginRight: '3px',
     },
+    myButtonActived: {
+      border: '1px solid gray',
+    },
   })
 );
 
@@ -53,6 +56,19 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
   };
 
   const { location, updatingLocation } = React.useContext(LocationContext);
+  const and = React.useRef(null);
+  const port = React.useRef(null);
+  function toggleActived(locationActived) {
+    if (locationActived === 'and') {
+      and.current.className += ' ' + classes.myButtonActived;
+      port.current.className =
+        'MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-myButton-4';
+    } else {
+      port.current.className += ' ' + classes.myButtonActived;
+      and.current.className +=
+        'MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-myButton-4';
+    }
+  }
 
   return (
     <>
@@ -60,18 +76,24 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
         <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
             <Button
+              ref={and}
               className={classes.myButton}
               variant="outlined"
               onClick={event => {
                 updatingLocation('and');
+                toggleActived('and');
               }}
             >
               Andalucia
             </Button>
             <Button
+              ref={port}
               className={classes.myButton}
               variant="outlined"
-              onClick={event => updatingLocation('port')}
+              onClick={event => {
+                updatingLocation('port');
+                toggleActived('port');
+              }}
             >
               Portugal
             </Button>
