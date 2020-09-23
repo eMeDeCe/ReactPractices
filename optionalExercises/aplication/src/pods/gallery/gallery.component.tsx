@@ -12,6 +12,8 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import { LocationContext } from 'common-app/location';
 
+import { ButtonComponent } from 'common/components/button';
+
 interface Props {
   pictures: PictureInfo[];
 }
@@ -70,6 +72,9 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
     }
   }
 
+  const label = {
+    name : 'Andalucia'
+  }
   return (
     <>
       <div className={classes.root}>
@@ -118,6 +123,7 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
             </GridListTile>
           ))}
         </GridList>
+        <ButtonComponent label="hola"></ButtonComponent>
       </div>
     </>
   );

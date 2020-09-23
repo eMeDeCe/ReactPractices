@@ -9,6 +9,7 @@ module.exports = merge(
     resolve: {
       alias: {
         "common-app": helpers.resolveFromRootPath('src/common-app'),
+        common: helpers.resolveFromRootPath('src/common'),
         core: helpers.resolveFromRootPath('src/core'),
         scenes: helpers.resolveFromRootPath('src/scenes'),
         pods: helpers.resolveFromRootPath('src/pods'),

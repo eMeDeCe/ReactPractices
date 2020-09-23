@@ -7,7 +7,9 @@ import { LocationContext } from 'common-app/location';
 
 export const GalleryContainer: React.FC = () => {
   const [pictures, setPictures] = React.useState<PictureInfo[]>([]);
-  const { location } = React.useContext(LocationContext);
+  //const [filter, setFilter] = React.useState('and');
+
+  const { location, updatingLocation } = React.useContext(LocationContext);
 
   const onLoadGallery = async () => {
     const apiGallery = await getGallery();
