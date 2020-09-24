@@ -4,6 +4,7 @@ import { PicturesSelected } from './pictures.vm';
 interface Context extends PicturesSelected {
   addSelectedPicture(picture: string, url: string, title: string);
   removeSelectedPicture(picture: string);
+  emptyCart();
 }
 
 let countPictures = 0;
@@ -14,6 +15,8 @@ export const PicturesContext = React.createContext<Context>({
   addSelectedPicture: () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   removeSelectedPicture: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  emptyCart: () => {},
   totalSelected: 0,
   selectedItems: [],
   infoSelectedItems: [],
@@ -42,6 +45,12 @@ export const PicturesProvider: React.FC = ({ children }) => {
     );
   };
 
+  const emptyCart = () => {
+    countPictures = 0;
+    setTotalSelected(countPictures);
+    setInfoSelectedItems([]);
+  };
+
   return (
     <PicturesContext.Provider
       value={{
@@ -51,6 +60,7 @@ export const PicturesProvider: React.FC = ({ children }) => {
         totalSelected,
         selectedItems,
         infoSelectedItems,
+        emptyCart,
       }}
     >
       {children}

@@ -51,6 +51,7 @@ export const CartComponent: React.FC = () => {
     totalSelected,
     infoSelectedItems,
     removeSelectedPicture,
+    emptyCart,
   } = React.useContext(PicturesContext);
 
   function showCart() {
@@ -95,9 +96,12 @@ export const CartComponent: React.FC = () => {
           <Typography variant="h5" component="h2">
             Imágenes añadidas: {totalSelected}
           </Typography>
-          <Typography style={{ display: totalSelected > 0 ? 'block' : 'none' }}>
+          <Button
+            style={{ display: totalSelected > 0 ? 'block' : 'none' }}
+            onClick={event => emptyCart()}
+          >
             Vaciar Carrito
-          </Typography>
+          </Button>
           {showCart()}
           <Typography variant="body2" component="p">
             Tramitar pedido
