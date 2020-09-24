@@ -12,8 +12,6 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import { LocationContext } from 'common-app/location';
 
-import { ButtonComponent } from 'common/components/button';
-
 interface Props {
   pictures: PictureInfo[];
 }
@@ -67,13 +65,9 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
         'MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-myButton-4';
     } else {
       port.current.className += ' ' + classes.myButtonActived;
-      and.current.className +=
+      and.current.className =
         'MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-myButton-4';
     }
-  }
-
-  const label = {
-    name : 'Andalucia'
   }
   return (
     <>
@@ -82,7 +76,7 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
             <Button
               ref={and}
-              className={classes.myButton}
+              className={classes.myButtonActived}
               variant="outlined"
               onClick={event => {
                 updatingLocation('and');
@@ -123,7 +117,6 @@ export const GalleryComponent: React.FC<Props> = ({ pictures }) => {
             </GridListTile>
           ))}
         </GridList>
-        <ButtonComponent label="hola"></ButtonComponent>
       </div>
     </>
   );

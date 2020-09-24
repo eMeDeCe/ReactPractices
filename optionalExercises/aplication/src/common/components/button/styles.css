@@ -21,6 +21,7 @@
   text-shadow:0px 1px 0px #ffffff;
   width: auto;
   height: 20px;
+  cursor:pointer;
 }
 .myButton:hover {
 	background:linear-gradient(to bottom, #ebebeb 5%, #e3e3e3 100%);
@@ -29,4 +30,8 @@
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+.myButtonHide {
+  display: none;
 }

@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { PicturesContext } from 'common-app/pictures';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import CloseIcon from '@material-ui/icons/Close';
+import { ButtonComponent } from 'common/components/button';
 
 const useStyles = makeStyles({
   root: {
@@ -37,15 +39,20 @@ const useStyles = makeStyles({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
+  close: {
+    marginLeft: '90%',
+  },
 });
 
 export const CartComponent: React.FC = () => {
   const classes = useStyles();
+  const [show, setShow] = React.useState(true);
   const {
     totalSelected,
     infoSelectedItems,
     removeSelectedPicture,
   } = React.useContext(PicturesContext);
+
   function showCart() {
     return infoSelectedItems.map((e, index) => (
       <div key={index} className={classes.contentImg}>
@@ -64,26 +71,42 @@ export const CartComponent: React.FC = () => {
   }
 
   return (
-    <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          Carrito de la compra
-        </Typography>
-        <Typography variant="h5" component="h2">
-          Imágenes añadidas: {totalSelected}
-        </Typography>
-        {showCart()}
-        <Typography variant="body2" component="p">
-          Tramitar pedido
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Política de compra</Button>
-      </CardActions>
-    </Card>
+    <>
+      <ButtonComponent
+        label="mostrar carro"
+        style={{ display: !show ? 'block' : 'none' }}
+        className="myButton"
+        onClick={() => setShow(!show)}
+      ></ButtonComponent>
+      <Card
+        className={classes.root}
+        variant="outlined"
+        style={{ display: show ? 'block' : 'none' }}
+      >
+        <CardContent>
+          <CloseIcon className={classes.close} onClick={() => setShow(!show)} />
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            Carrito de la compra
+          </Typography>
+          <Typography variant="h5" component="h2">
+            Imágenes añadidas: {totalSelected}
+          </Typography>
+          <Typography style={{ display: totalSelected > 0 ? 'block' : 'none' }}>
+            Vaciar Carrito
+          </Typography>
+          {showCart()}
+          <Typography variant="body2" component="p">
+            Tramitar pedido
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Política de compra</Button>
+        </CardActions>
+      </Card>
+    </>
   );
 };
