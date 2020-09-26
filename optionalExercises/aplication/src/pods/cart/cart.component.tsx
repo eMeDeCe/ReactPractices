@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
 import { ButtonComponent } from 'common/components/button';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -103,9 +104,7 @@ export const CartComponent: React.FC = () => {
             Vaciar Carrito
           </Button>
           {showCart()}
-          <Typography variant="body2" component="p">
-            Tramitar pedido
-          </Typography>
+          <Link to="/checkout">Tramitar pedido</Link>
         </CardContent>
         <CardActions>
           <Button size="small">Política de compra</Button>
