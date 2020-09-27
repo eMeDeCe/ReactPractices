@@ -10,9 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 
+import { Link } from 'react-router-dom';
+
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    /*minWidth: 275,*/
+    width: '50%',
+    marginLeft: '25%',
+    marginTop: '10%',
   },
   bullet: {
     display: 'inline-block',
@@ -65,23 +70,28 @@ export const CheckoutComponent: React.FC = () => {
     ));
   }
   return (
-    <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          Carrito de la compra
-        </Typography>
-        <Typography variant="h5" component="h2">
-          Imágenes añadidas: {totalSelected}
-        </Typography>
-        {showCart()}
-      </CardContent>
-      <CardActions>
-        <Button size="small">Política de compra</Button>
-      </CardActions>
-    </Card>
+    <>
+      <Card className={classes.root} variant="outlined">
+        <CardContent>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            Finalizando Compra
+          </Typography>
+          <Typography variant="h5" component="h2">
+            Imágenes Compradas: {totalSelected}
+          </Typography>
+          {showCart()}
+        </CardContent>
+        <CardActions>
+          <Button size="small">Política de compra</Button>
+        </CardActions>
+      </Card>
+      <Link to="/gallery" className={classes.root}>
+        Volver a la galeria
+      </Link>
+    </>
   );
 };

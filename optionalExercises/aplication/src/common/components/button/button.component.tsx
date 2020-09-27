@@ -10,7 +10,7 @@ interface ButtonProps {
 }
 
 export const ButtonComponent = ButtonProps => {
-  const classStyle = 'myButton';
+  /*const classStyle = 'myButton'; Así, se añade sin problemas*/
   return (
     <>
       <div

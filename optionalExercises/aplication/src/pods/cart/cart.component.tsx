@@ -104,8 +104,8 @@ export const CartComponent: React.FC = () => {
             Vaciar Carrito
           </Button>
           {showCart()}
-          <Link to="/checkout">Tramitar pedido</Link>
         </CardContent>
+        <Link to="/checkout">Tramitar pedido</Link>
         <CardActions>
           <Button size="small">Política de compra</Button>
         </CardActions>
