@@ -1,13 +1,13 @@
-import { PictureInfo } from './productos.api-model';
-import { mockPictureInfo } from './productos.mock-data';
+import { ProductoInfo } from './productos.api-model';
+import { mockProductoInfo } from './productos.mock-data';
 
-let gallery = [...mockPictureInfo];
+let producto = [...mockProductoInfo];
 
-export const getGallery = async (): Promise<PictureInfo[]> => {
-  return gallery;
+export const getproducto = async (): Promise<ProductoInfo[]> => {
+  return producto;
 };
 
-export const deletePicture = async (id: string): Promise<boolean> => {
-  gallery = gallery.filter(e => e.id !== id);
+export const deleteProducto = async (id: string): Promise<boolean> => {
+  producto = producto.filter(e => e.id !== id);
   return true;
 };

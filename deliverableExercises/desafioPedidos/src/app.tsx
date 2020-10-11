@@ -1,11 +1,12 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
 import { HeaderLayout } from 'layouts/header';
+import { ListaProductosContainer } from 'pods/productos';
 
 const App: React.FC = () => {
   return (
     <HeaderLayout>
-      <h1>Gestor de pedidos</h1>
+      <ListaProductosContainer></ListaProductosContainer>
     </HeaderLayout>
   );
 };
