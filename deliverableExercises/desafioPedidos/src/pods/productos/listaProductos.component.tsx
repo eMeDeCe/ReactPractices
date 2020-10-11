@@ -1,6 +1,5 @@
 import React from 'react';
 import { ProductoInfo } from './listaProductos.vm';
-
 import { Table, Radio, Divider } from 'antd';
 
 interface Props {
@@ -16,26 +15,6 @@ const columns = [
     dataIndex: 'importe',
   },
 ];
-const data = [
-  {
-    key: '1',
-    descripcion: 'John Brown',
-    importe: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    descripcion: 'Jim Green',
-    importe: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    descripcion: 'Joe Black',
-    importe: 32,
-    address: 'Sidney No. 1 Lake Park',
-  },
-]; // rowSelection object indicates the need for row selection
 
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
@@ -58,7 +37,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
           ...rowSelection,
         }}
         columns={columns}
-        dataSource={data}
+        dataSource={productos}
       />
     </div>
   );

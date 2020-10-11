@@ -1,5 +1,5 @@
 export interface ProductoInfo {
-  id: string;
+  key: string;
   isValidated: boolean;
   descripcion: string;
   importe: number;

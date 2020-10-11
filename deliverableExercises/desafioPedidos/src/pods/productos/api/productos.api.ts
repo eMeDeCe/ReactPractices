@@ -3,7 +3,7 @@ import { mockProductoInfo } from './productos.mock-data';
 
 let producto = [...mockProductoInfo];
 
-export const getproducto = async (): Promise<ProductoInfo[]> => {
+export const getProducto = async (): Promise<ProductoInfo[]> => {
   return producto;
 };
 
