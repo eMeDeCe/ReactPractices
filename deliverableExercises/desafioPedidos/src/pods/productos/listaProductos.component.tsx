@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ProductoInfo } from './listaProductos.vm';
 import { Table, Radio, Divider, Form, Input, Select, Button } from 'antd';
+import { PedidoGeneradoContext } from 'common-app/pedido';
 
 interface Props {
   productos: ProductoInfo[];
@@ -18,22 +19,23 @@ const columns = [
   },
 ];
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      'selectedRows: ',
-      selectedRows
-    );
-  },
-};
-
 const nuevoPrecio = function(record) {
   console.log('desde aqui vamos a actualizar el valor');
 };
 
 export const ProductosComponent: React.FC<Props> = ({ productos }) => {
-  const [selectionType, setSelectionType] = React.useState('checkbox');
+  const { updatingProgress } = React.useContext(PedidoGeneradoContext);
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(
+        `selectedRowKeys : ${selectedRowKeys}`,
+        'selectedRows: ',
+        selectedRows
+      );
+      updatingProgress(Math.round((selectedRows.length * 100) / 6));
+    },
+  };
+
   return (
     <div>
       <Divider />
