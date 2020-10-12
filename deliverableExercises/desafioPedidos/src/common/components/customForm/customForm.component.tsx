@@ -4,6 +4,9 @@ import './customForm.css';
 import { Form, Input, Button } from 'antd';
 
 export const CustomizedForm = ({ onChange, fields, className }) => {
+  const mostrarValorInput = function() {
+    return console.log('hola');
+  };
   return (
     <Form
       name="global_state"
@@ -15,7 +18,7 @@ export const CustomizedForm = ({ onChange, fields, className }) => {
       }}
     >
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" onClick={mostrarValorInput}>
           Actualizar Precio
         </Button>
       </Form.Item>
