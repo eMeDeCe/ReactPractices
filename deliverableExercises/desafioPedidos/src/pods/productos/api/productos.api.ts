@@ -7,7 +7,7 @@ export const getProducto = async (): Promise<ProductoInfo[]> => {
   return producto;
 };
 
-export const deleteProducto = async (id: string): Promise<boolean> => {
-  producto = producto.filter(e => e.id !== id);
+export const deleteProducto = async (key: string): Promise<boolean> => {
+  producto = producto.filter(e => e.key !== key);
   return true;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProductoInfo } from './listaProductos.vm';
-import { Table, Radio, Divider, Form, Input, Select, Button } from 'antd';
+import { Table, Radio, Divider, Form } from 'antd';
 
 interface Props {
   productos: ProductoInfo[];
@@ -28,10 +28,6 @@ const rowSelection = {
   },
 };
 
-const nuevoPrecio = function(record) {
-  console.log('desde aqui vamos a actualizar el valor');
-};
-
 export const ProductosComponent: React.FC<Props> = ({ productos }) => {
   const [selectionType, setSelectionType] = React.useState('checkbox');
   return (
@@ -39,13 +35,6 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
       <Divider />
 
       <Table
-        onRow={(record, rowIndex) => {
-          return {
-            onClick: event => {
-              nuevoPrecio(record);
-            },
-          };
-        }}
         rowSelection={{
           ...rowSelection,
         }}
