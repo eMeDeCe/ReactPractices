@@ -40,22 +40,25 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
     //updatingPrice(record, 3);
   };
 
-  const [fields, setFields] = React.useState([
-    {
-      name: ['Nuevo'],
-      value: 1,
-    },
-  ]);
+  const [form] = Form.useForm();
+  const nuevoHandler = function() {
+    form
+      .validateFields()
+      .then(values => {
+        console.log('Dame el precio ahora>>', values.price);
+      })
+      .catch(errorInfo => {
+        console.log('Error');
+      });
+  };
 
   return (
     <div>
       <CustomizedForm
-        fields={fields}
-        onChange={newFields => {
-          setFields(newFields);
-          console.log('valor del campo', newFields.value);
-        }}
+        //fields={fields}
         className={'show'}
+        form={form}
+        handlerPrice={nuevoHandler}
       />
       <Divider />
 

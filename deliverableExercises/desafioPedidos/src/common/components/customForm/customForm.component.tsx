@@ -1,24 +1,34 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './customForm.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, InputNumber, Button } from 'antd';
+interface FormProps {
+  className: string;
+  form: {};
+  handlerPrice(): void;
+}
 
-export const CustomizedForm = ({ onChange, fields, className }) => {
-  const mostrarValorInput = function() {
-    return console.log('hola');
+export const CustomizedForm = FormProps => {
+  const checkPrice = (rule, value) => {
+    if (value > 0) {
+      return Promise.resolve();
+    }
+    return Promise.reject('El precio debe ser mayor que 0');
   };
+
   return (
     <Form
+      form={FormProps.form}
       name="global_state"
       layout="inline"
-      fields={fields}
-      className={className}
-      onFieldsChange={(changedFields, allFields) => {
-        onChange(allFields);
-      }}
+      className={FormProps.className}
     >
       <Form.Item>
-        <Button type="primary" htmlType="submit" onClick={mostrarValorInput}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          onClick={FormProps.handlerPrice}
+        >
           Actualizar Precio
         </Button>
       </Form.Item>
@@ -27,12 +37,11 @@ export const CustomizedForm = ({ onChange, fields, className }) => {
         label="Nuevo precio"
         rules={[
           {
-            required: true,
-            message: 'Price is required!',
+            validator: checkPrice,
           },
         ]}
       >
-        <Input />
+        <InputNumber min={1} max={1000} />
       </Form.Item>
     </Form>
   );
