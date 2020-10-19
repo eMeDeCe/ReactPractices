@@ -26,26 +26,32 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
   );
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
+      /*console.log(
         `selectedRowKeys : ${selectedRowKeys}`,
         'selectedRows: ',
         selectedRows
-      );
+      );*/
       updatingProgress(Math.round((selectedRows.length * 100) / 6));
     },
   };
 
-  const nuevoPrecio = function(record) {
-    console.log('desde aqui vamos a actualizar el valor');
-    //updatingPrice(record, 3);
+  const priceUpdating = {
+    productoSeleccionado: {
+      id: '-1',
+      importe: -1,
+    },
+    nuevoPrecio: '',
   };
+
+  const [] = React.useState();
 
   const [form] = Form.useForm();
   const nuevoHandler = function() {
     form
       .validateFields()
       .then(values => {
-        console.log('Dame el precio ahora>>', values.price);
+        priceUpdating.nuevoPrecio = values.price;
+        updatingPrice(priceUpdating);
       })
       .catch(errorInfo => {
         console.log('Error');
@@ -66,7 +72,10 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
         onRow={(record, rowIndex) => {
           return {
             onClick: event => {
-              nuevoPrecio(record);
+              priceUpdating.productoSeleccionado = {
+                id: record.key,
+                importe: record.importe,
+              };
             },
           };
         }}

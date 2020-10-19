@@ -4,7 +4,7 @@ import { TotalPedido } from './pedido.vm';
 interface Context extends TotalPedido {
   updatingTotal(total: number);
   updatingProgress(progress: number);
-  updatingPrice(key: string, price: number);
+  updatingPrice(productoUpd: {});
 }
 
 export const PedidoGeneradoContext = React.createContext<Context>({
@@ -17,8 +17,8 @@ export const PedidoGeneradoContext = React.createContext<Context>({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   updatingPrice: () => {},
 });
-const updatingPrice = function(producto, nuevoPrecio) {
-  console.log('Producto', producto);
+const updatingPrice = function(productoContent) {
+  console.log('Producto', productoContent);
 };
 
 export const PedidoGeneradoProvider: React.FC = ({ children }) => {
