@@ -22,7 +22,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
 
   const [displayForm, setDisplayForm] = useState(false);
   const [form] = Form.useForm();
-  const nuevoHandler = function() {
+  const nuevoHandler = function () {
     form
       .validateFields()
       .then(values => {
@@ -34,7 +34,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
       });
   };
 
-  const newPrice = function(record) {
+  const newPrice = function (record) {
     setPriceUpdating({
       ...priceUpdating,
       productoSeleccionado: {
@@ -44,7 +44,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
     });
     setDisplayForm(true);
   };
-  const createForm = function() {
+  const createForm = function () {
     return (
       <CustomizedForm
         className={!displayForm ? 'hidden' : 'show'}
@@ -71,13 +71,20 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
     //console.log(total);
   }, [total]);
 
+
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      updatingProgress(Math.round((selectedRows.length * 100) / 6));
+    },
+  };
+
   const { Column } = Table;
 
   return (
     <div>
       <Divider />
       {createForm()}
-      <Table dataSource={productos} rowSelection={{}}>
+      <Table dataSource={productos} rowSelection={{ ...rowSelection }}>
         <Column title="Producto" dataIndex="descripcion" key="description" />
         <Column
           title="Precio (€/m2)"
