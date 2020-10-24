@@ -49,7 +49,7 @@ function progress(stateProgess) {
   return <Progress type="circle" percent={stateProgess} />;
 }
 
-function total(totalPedido) {
+function totalInfo(totalPedido) {
   return (
     <Descriptions size="small" column={3}>
       <Descriptions.Item label="Total del Pedido">
@@ -71,7 +71,7 @@ export const HeaderLayout: React.FC = () => {
         numeroCliente="0001"
         fechaCreacion="1986/01/07"
       />
-      {total(10)}
+      {totalInfo(10)}
       {progress(updatingProgress.progress)}
       {actSend(updatingProgress.progress)}
     </>

@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const ProductosComponent: React.FC<Props> = ({ productos }) => {
-  const { updatingProgress, updatingPrice } = React.useContext(
+  const { updatingProgress, updatingTotal } = React.useContext(
     PedidoGeneradoContext
   );
   const [priceUpdating, setPriceUpdating] = useState({
@@ -27,9 +27,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
       .validateFields()
       .then(values => {
         setPriceUpdating({ ...priceUpdating, nuevoPrecio: values.price });
-        //priceUpdating.nuevoPrecio = values.price;
         setDisplayForm(false);
-        console.log('hola');
       })
       .catch(errorInfo => {
         console.log('Error');
@@ -56,9 +54,22 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
     );
   };
 
+  const [total, setTotal] = useState(1);
   useEffect(() => {
-    updatingPrice(priceUpdating);
+    let a = 0;
+    productos.forEach(element => {
+      if (element.key === priceUpdating.productoSeleccionado.id) {
+        element.importe = priceUpdating.nuevoPrecio;
+      }
+      a = a + element.importe;
+    });
+    setTotal(a);
   }, [priceUpdating.nuevoPrecio]);
+
+  useEffect(() => {
+    updatingTotal(total);
+    //console.log(total);
+  }, [total]);
 
   const { Column } = Table;
 
@@ -66,7 +77,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
     <div>
       <Divider />
       {createForm()}
-      <Table dataSource={productos}>
+      <Table dataSource={productos} rowSelection={{}}>
         <Column title="Producto" dataIndex="descripcion" key="description" />
         <Column
           title="Precio (€/m2)"

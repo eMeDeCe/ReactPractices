@@ -24,6 +24,7 @@ const updatingPrice = function(productoContent) {
 export const PedidoGeneradoProvider: React.FC = ({ children }) => {
   const [total, setTotal] = React.useState(0);
   const updatingTotal = total => {
+    console.log('El total desde el contexto es ', total);
     setTotal(total);
   };
   const [progress, setProgress] = React.useState(0);
