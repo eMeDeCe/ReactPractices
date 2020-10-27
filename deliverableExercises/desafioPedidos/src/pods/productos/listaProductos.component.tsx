@@ -17,12 +17,12 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
       id: '-1',
       importe: -1,
     },
-    nuevoPrecio: 1,
+    nuevoPrecio: 0,
   });
 
   const [displayForm, setDisplayForm] = useState(false);
   const [form] = Form.useForm();
-  const nuevoHandler = function () {
+  const nuevoHandler = function() {
     form
       .validateFields()
       .then(values => {
@@ -34,7 +34,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
       });
   };
 
-  const newPrice = function (record) {
+  const newPrice = function(record) {
     setPriceUpdating({
       ...priceUpdating,
       productoSeleccionado: {
@@ -44,7 +44,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
     });
     setDisplayForm(true);
   };
-  const createForm = function () {
+  const createForm = function() {
     return (
       <CustomizedForm
         className={!displayForm ? 'hidden' : 'show'}
@@ -54,8 +54,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
     );
   };
 
-  const [total, setTotal] = useState(1);
-  useEffect(() => {
+  const calculateTotal = function() {
     let a = 0;
     productos.forEach(element => {
       if (element.key === priceUpdating.productoSeleccionado.id) {
@@ -63,14 +62,13 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
       }
       a = a + element.importe;
     });
-    setTotal(a);
-  }, [priceUpdating.nuevoPrecio]);
-
+    return a;
+  };
+  const [total, setTotal] = useState(0);
   useEffect(() => {
+    setTotal(calculateTotal);
     updatingTotal(total);
-    //console.log(total);
-  }, [total]);
-
+  }, [priceUpdating.nuevoPrecio, total, productos]);
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -79,12 +77,17 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
   };
 
   const { Column } = Table;
-
   return (
     <div>
       <Divider />
       {createForm()}
-      <Table dataSource={productos} rowSelection={{ ...rowSelection }}>
+      <Table
+        rowSelection={{
+          type: 'checkbox',
+          ...rowSelection,
+        }}
+        dataSource={productos}
+      >
         <Column title="Producto" dataIndex="descripcion" key="description" />
         <Column
           title="Precio (€/m2)"

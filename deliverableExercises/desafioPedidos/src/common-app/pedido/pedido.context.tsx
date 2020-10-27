@@ -8,7 +8,7 @@ interface Context extends TotalPedido {
 }
 
 export const PedidoGeneradoContext = React.createContext<Context>({
-  total: 0,
+  ctotal: 0,
   progress: 0,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   updatingTotal: () => {},
@@ -22,22 +22,19 @@ const updatingPrice = function(productoContent) {
 };
 
 export const PedidoGeneradoProvider: React.FC = ({ children }) => {
-  const [total, setTotal] = React.useState(0);
-  const updatingTotal = total => {
-    console.log('El total desde el contexto es ', total);
-    setTotal(total);
+  const [ctotal, setCtotal] = React.useState();
+  const updatingTotal = result => {
+    setCtotal(result);
   };
   const [progress, setProgress] = React.useState(0);
   const updatingProgress = progress => {
     setProgress(progress);
   };
 
-  const [price, setPrice] = React.useState();
-
   return (
     <PedidoGeneradoContext.Provider
       value={{
-        total,
+        ctotal,
         progress,
         updatingTotal,
         updatingProgress,

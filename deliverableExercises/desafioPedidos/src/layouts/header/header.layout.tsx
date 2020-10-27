@@ -45,7 +45,7 @@ function actSend(send) {
   }
 }
 
-function progress(stateProgess) {
+function progeso(stateProgess) {
   return <Progress type="circle" percent={stateProgess} />;
 }
 
@@ -62,8 +62,8 @@ function totalInfo(totalPedido) {
 const MemoizedGeneralDatas = React.memo(generalDatas);
 
 export const HeaderLayout: React.FC = () => {
-  const updatingProgress = React.useContext(PedidoGeneradoContext);
-  updatingProgress.progress < 100 ? actSend(false) : actSend(true);
+  const { progress, ctotal } = React.useContext(PedidoGeneradoContext);
+  progress < 100 ? actSend(false) : actSend(true);
   return (
     <>
       <MemoizedGeneralDatas
@@ -71,9 +71,9 @@ export const HeaderLayout: React.FC = () => {
         numeroCliente="0001"
         fechaCreacion="1986/01/07"
       />
-      {totalInfo(10)}
-      {progress(updatingProgress.progress)}
-      {actSend(updatingProgress.progress)}
+      {totalInfo(ctotal)}
+      {progeso(progress)}
+      {actSend(progress)}
     </>
   );
 };

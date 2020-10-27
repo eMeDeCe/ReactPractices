@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './customForm.css';
-import { Form, Input, InputNumber, Button } from 'antd';
+import { Form, InputNumber, Button } from 'antd';
 interface FormProps {
   className: string;
   form: {};
