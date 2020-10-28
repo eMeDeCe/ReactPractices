@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core';
 import React from 'react';
 import './styles.css';
 
@@ -15,7 +14,7 @@ export const ButtonComponent = ButtonProps => {
     <>
       <div
         style={ButtonProps.style}
-        className={ButtonProps.classStyle}
+        className={`${ButtonProps.classStyle}`}
         onClick={ButtonProps.onClick}
       >
         {ButtonProps.label}

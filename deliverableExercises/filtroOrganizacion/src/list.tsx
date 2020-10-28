@@ -13,12 +13,19 @@ export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [filter, setFilter] = React.useState("Lemoncode");
   const [company, setCompany]= React.useState("Lemoncode");
+ .  let lastCompany = 'Lemoncode';
+  let showError = false;
  
   fetch(`https://api.github.com/orgs/${filter}/members`).then((response) => {
     if (response.ok) {
+      lastCompany = company;
       return response.json();
     } else {
-      throw new Error('Error in filter');
+      setFilter(lastCompany);
+      showError = true;
+      if (response.status === 404) {
+          throw new Error('Error in filter');
+      }
     }
   })
   .then((responseJson) => {
@@ -46,7 +53,6 @@ export const ListPage: React.FC = () => {
     e.preventDefault();
     setFilter(company);
   };
-
   
   return (
     <>
@@ -59,6 +65,7 @@ export const ListPage: React.FC = () => {
             onChange={(e) => setCompany(e.target.value)}
           />
         </div>
+        <div style={{ display: showError ? "block" : "none" }}>No existe la organización {company} en github, haz otra búsqueda</div>
       </div>
       <button type="submit">Buscar</button>
     </form>

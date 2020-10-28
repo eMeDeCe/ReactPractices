@@ -54,6 +54,7 @@ export const CartComponent: React.FC = () => {
     removeSelectedPicture,
     emptyCart,
   } = React.useContext(PicturesContext);
+  const classNew = 'myButton';
 
   function showCart() {
     return infoSelectedItems.map((e, index) => (
@@ -71,7 +72,6 @@ export const CartComponent: React.FC = () => {
       </div>
     ));
   }
-
   return (
     <>
       <ButtonComponent
