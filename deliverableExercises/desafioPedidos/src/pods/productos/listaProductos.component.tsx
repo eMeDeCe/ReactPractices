@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ProductoInfo } from './listaProductos.vm';
-import { Table, Radio, Divider, Form, Input, Select, Button } from 'antd';
+import { Table, Divider, Form } from 'antd';
 import { PedidoGeneradoContext } from 'common-app/pedido';
 import { CustomizedForm } from 'common/components/customForm';
+import './style.css';
 
 interface Props {
   productos: ProductoInfo[];
@@ -93,6 +94,7 @@ export const ProductosComponent: React.FC<Props> = ({ productos }) => {
           title="Precio (€/m2)"
           dataIndex="importe"
           key="precio"
+          className="price"
           onCell={(record, rowIndex) => {
             return {
               onClick: event => {

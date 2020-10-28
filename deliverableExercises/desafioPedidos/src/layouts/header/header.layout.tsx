@@ -1,7 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import 'antd/dist/antd.css';
-import { PageHeader, Descriptions, Button, Progress } from 'antd';
+import { PageHeader, Descriptions, Button, Progress, message } from 'antd';
 import './header.layaut.css';
 import { PedidoGeneradoContext } from 'common-app/pedido';
 
@@ -11,7 +10,7 @@ const date = rightNow
   .slice(0, 10)
   .replace(/-/g, '/');
 
-function generalDatas({ cliente, numeroCliente, fechaCreacion }) {
+function generalDatas({ cliente, numeroCliente, direccion }) {
   return (
     <div className="site-page-header-ghost-wrapper">
       <PageHeader
@@ -24,21 +23,31 @@ function generalDatas({ cliente, numeroCliente, fechaCreacion }) {
           <Descriptions.Item label="Cliente">
             <a>{cliente}</a>
           </Descriptions.Item>
-          <Descriptions.Item label="Fecha de alta">
-            {fechaCreacion}
-          </Descriptions.Item>
+          <Descriptions.Item label="Dirección">{direccion}</Descriptions.Item>
         </Descriptions>
       </PageHeader>
     </div>
   );
 }
 
+const success = () => {
+  message.success('Enviado correctamente');
+};
+
+const warning = () => {
+  message.warning('Comprueba el pedido antes de enviarlo');
+};
+
 function actSend(send) {
   if (send < 100) {
-    return <Button key="3">Enviar</Button>;
+    return (
+      <Button key="3" onClick={warning}>
+        Enviar
+      </Button>
+    );
   } else {
     return (
-      <Button key="1" type="primary">
+      <Button key="1" type="primary" onClick={success}>
         Enviar
       </Button>
     );
@@ -46,16 +55,15 @@ function actSend(send) {
 }
 
 function progeso(stateProgess) {
-  return <Progress type="circle" percent={stateProgess} />;
+  return <Progress type="circle" percent={stateProgess} className="progress" />;
 }
 
 function totalInfo(totalPedido) {
   return (
-    <Descriptions size="small" column={3}>
-      <Descriptions.Item label="Total del Pedido">
-        <a>{totalPedido}</a>
-      </Descriptions.Item>
-    </Descriptions>
+    <div className="box">
+      <span> Total pedido : </span>
+      <div className="blue">{totalPedido} €</div>
+    </div>
   );
 }
 
@@ -69,7 +77,7 @@ export const HeaderLayout: React.FC = () => {
       <MemoizedGeneralDatas
         cliente="Mandalas"
         numeroCliente="0001"
-        fechaCreacion="1986/01/07"
+        direccion="info@mandalas.com"
       />
       {totalInfo(ctotal)}
       {progeso(progress)}
