@@ -13,7 +13,7 @@ export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [filter, setFilter] = React.useState("Lemoncode");
   const [company, setCompany]= React.useState("Lemoncode");
- .  let lastCompany = 'Lemoncode';
+  let lastCompany = 'Lemoncode';
   let showError = false;
  
   fetch(`https://api.github.com/orgs/${filter}/members`).then((response) => {
