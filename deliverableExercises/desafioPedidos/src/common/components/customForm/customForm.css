@@ -1,0 +1,13 @@
+.language-bash {
+  max-width: 400px;
+  border-radius: 6px;
+  margin-top: 24px;
+}
+.show {
+  display: flex;
+  flex-flow: row-reverse wrap; 
+}
+
+.hidden {
+  display: none;
+}
