@@ -54,7 +54,6 @@ export const CartComponent: React.FC = () => {
     removeSelectedPicture,
     emptyCart,
   } = React.useContext(PicturesContext);
-  const classNew = 'myButton';
 
   function showCart() {
     return infoSelectedItems.map((e, index) => (
@@ -76,8 +75,8 @@ export const CartComponent: React.FC = () => {
     <>
       <ButtonComponent
         label="mostrar carro"
+        className={'myButton'}
         style={{ display: !show ? 'block' : 'none' }}
-        className="myButton"
         onClick={() => setShow(!show)}
       ></ButtonComponent>
       <Card
@@ -105,7 +104,9 @@ export const CartComponent: React.FC = () => {
           </Button>
           {showCart()}
         </CardContent>
-        <Link to="/checkout">Tramitar pedido</Link>
+        <Link to="/checkout" style={{ marginLeft: '15px', color: 'gray' }}>
+          Tramitar pedido
+        </Link>
         <CardActions>
           <Button size="small">Política de compra</Button>
         </CardActions>
