@@ -13,8 +13,8 @@ export const ButtonComponent = ButtonProps => {
   return (
     <>
       <div
+        className={ButtonProps.classStyle}
         style={ButtonProps.style}
-        className={`${ButtonProps.classStyle}`}
         onClick={ButtonProps.onClick}
       >
         {ButtonProps.label}
